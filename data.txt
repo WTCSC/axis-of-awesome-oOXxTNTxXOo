@@ -1,0 +1,19 @@
+Character, MatcTime/m:s, mode, map, Kills/finalhits, damage, deaths, assist, "kills", blocked, healing, Accuracy, RankedPoints, loss/gain, date(date and time), win/loss, mvp
+
+Ranked{
+Magik, 15:59, Convergence, Symboitic Surface, 9, 19273, 13, 0, 18, 26409, 0, 40.3, 4393, -21, 3/22/25, 1:03pm, lost, no
+
+
+
+}
+
+
+
+Standard{
+
+
+
+
+
+}
+
