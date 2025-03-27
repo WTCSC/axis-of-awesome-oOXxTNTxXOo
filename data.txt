@@ -1,9 +1,13 @@
-Character, #ofDifCharactersPlayed, MatcTime/m:s, mode, map, Kills/finalhits, damage, deaths, assist, "kills", blocked, healing, Accuracy, RankedPoints, loss/gain, date(date and time), win/loss, mvp
+Character, NumberOfDifCharactersPlayed, MatcTime/m:s, mode, map, Kills/finalhits, damage, deaths, assist, "kills", blocked, healing, Accuracy, RankedPoints, loss/gain, date(date and time), win/loss, mvp
 
 Ranked{
 Magik, 2, 15:59, Convergence, Symboitic Surface, 9, 19273, 13, 0, 18, 26409, 0, 40.3, 4393, -21, 3/22/25, 1:03pm, lost, no
 Magik, 3, 15:25, Convergence, Symbiotic Surface, 3, 13422, 15, 7, 12, 10142, 9,610, 28.7, 4414, -21, 3/21/25, 9:51pm, lost, no
 Magik, 1, 17:21, Convoy, Spider-Islands, 19, 23494, 12, 0, 33, 15097, 0, 51.8, 4435, -22, 3/21/25, 9:30pm, lost, no
+Magik, 1, 8:23, Domination, Royal Palace, 7, 9554, 6, 0, 15, 5425, 0, 51.9, 4456, +20, 3/21/25, 7:47pm, win, no 
+Magik, 3, 16:26, Convoy, Midtown, 14, 22470, 13, 6, 28, 38654, 0, 31.0, 4426, +23, 3/20/25, 10:52pm, win, no
+Magik, 2, 7:52, Domination, Royal Palace, 8, 11692, 7, 0, 16, 8478, 0, 11.2, 4381, -16, 3/20/25, 4:33pm, lost, svp
+Magik, 2, 10:13, Convergence, Shin-Shibuya, 11, 18931, 7, 10, 26, 7357, 0, 47.0, 4393, +26, 3/20/25, 3:23pm, won, no
 
 
 
