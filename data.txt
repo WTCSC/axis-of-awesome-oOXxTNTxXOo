@@ -1,3 +1,4 @@
+Format example:
 Character, NumberOfDifCharactersPlayed, MatcTime/m:s, mode, map, Kills/finalhits, damage, deaths, assist, "kills", blocked, healing, Accuracy, RankedPoints, loss/gain, date(date and time), win/loss, mvp
 
 Ranked{
@@ -11,22 +12,23 @@ Magik, 2, 10:13, Convergence, Shin-Shibuya, 11, 18931, 7, 10, 26, 7357, 0, 47.0,
 Magik, 1, 5:36, Convergence, Central Park, 8, 8770, 3, 0, 13, 7142, 0, 60.6, 4366, +28, 3/19/25, 9:27pm, win, no
 Magik, 1, 14:4, Convergence, Hall of Djalia, 26, 20163, 10, 0, 35, 16184, 0, 39.1, 4312, +26, 3/19/25, 7:44pm, win, mvp
 Magik, 1, 6:10, Convoy, Midtown, 12, 12826, 3, 0, 18, 5926, 0, 51.0, 4286, +28, 3/19/25, 7:24pm, win, mvp
+Magik, 2, 18:14, Convoy, Midtown, 15, 21773, 16, 15, 28, 15700, 6120, 40.6, 4257, +24, 3/19/25, 5:32pm, win, no
+Magik, 1, 10:19, Convergence, Hall of Djalia, 12, 18929, 8, 0, 24, 10931, 0, 59.6, 4233, +25, 3/19/25, 5:03pm, win, no
+Magik, 2, 15:34, Convergence, Shin-Shibuya, 17, 18511, 13, 0, 21, 11270, 0, 53.9, 4207, -20, 3/18/25, 6:27pm, lost, no
+Magik, 1, 8:59, Domination, Hell's Heaven, 7, 9909, 8, 0, 9, 6474, 0, 50.4, 4240, -18, 3/18/25, 11:57am, lost, no
+Magik, 1, 8:15, Domination, Birnin T'Challa, 5, 9717, 7, 0, 11, 5577, 0, 61.7, 4258, -19, 3/18/25, 11:43am, lost, svp
+
+Magik, 
+Magik, 
+Magik, 
+Magik, 
+Magik, 
+Magik, 
 Magik, 
 Magik, 
 
+Magik, 
 
-
-
-
+Magik, 
+Magik, 
 }
-
-
-
-Standard{
-
-
-
-
-
-}
-
