@@ -140,16 +140,17 @@ for x in Ranked:
 
 
 #---------
+# Normalize the data by stripping whitespace and converting to lowercase
+normalized_win_loss = [win.strip().lower() for win in TotalWinLoss]
+normalized_mvp = [mvp.strip().lower() for mvp in TotalMVP]
+
 # Count occurrences of each combination of TotalWinLoss and mvp
 win_loss_mvp_counts = {
-    "Win & MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "mvp"),
-    "Win & No MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "no"),
-    "Loss & SVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "svp"),
-    "Loss & No MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "no"),
+    "Win & MVP": sum(1 for win, mvp in zip(normalized_win_loss, normalized_mvp) if win == "win" and mvp == "mvp"),
+    "Win & No MVP": sum(1 for win, mvp in zip(normalized_win_loss, normalized_mvp) if win == "win" and mvp == "no"),
+    "Loss & SVP": sum(1 for win, mvp in zip(normalized_win_loss, normalized_mvp) if win == "lost" and mvp == "svp"),
+    "Loss & No MVP": sum(1 for win, mvp in zip(normalized_win_loss, normalized_mvp) if win == "lost" and mvp == "no"),
 }
-
-print(TotalWinLoss, TotalMVP)
-
 # Remove entries with zero counts
 win_loss_mvp_counts = {k: v for k, v in win_loss_mvp_counts.items() if v < 0}
 
