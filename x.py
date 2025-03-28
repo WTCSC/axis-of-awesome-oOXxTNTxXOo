@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import numpy as np
 
+#Character, NumberOfDifCharactersPlayed, MatcTime/m:s, mode, map, Kills/finalhits, damage, deaths, assist, "kills", blocked, healing, Accuracy, RankedPoints, loss/gain, date(date and time), win/loss, mvp
 Ranked = [
 ["Magik, 2, 15:59, Convergence, Symboitic Surface, 9, 19273, 13, 0, 18, 26409, 0, 40.3, 4393, -21, 3/22/25, 1:03 pm, lost, no"],
 ["Magik, 3, 15:25, Convergence, Symbiotic Surface, 3, 13422, 15, 7, 12, 10142, 9,610, 28.7, 4414, -21, 3/21/25, 9:51 pm, lost, no"],
@@ -31,5 +32,6 @@ Ranked = [
 ["Magik, 1, 13:56, Domination, Royal Palace, 16, 26995, 8, 0, 27, 12280, 0, 49.8, 4317, -20, 3/8/25, 4:27 pm, lost, svp"],
 ["Magik, 1, 10:44, Convergence, Shin-Shibuya, 12, 17594, 7, 0, 19, 8955, 0, 58.1, 4337, +24, 3/8/25, 4:08 pm, win, no"],
 ]
+
 
 print(Ranked)
