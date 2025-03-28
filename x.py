@@ -33,26 +33,68 @@ Ranked = [
 "Magik, 1, 10:44, Convergence, Shin-Shibuya, 12, 17594, 7, 0, 19, 8955, 0, 58.1, 4337, +24, 3/8/25, 4:08 pm, win, no",
 ]
 
+Characters = []  # List to store unique characters
+CharactersPlayed = []  # List to store number of different characters played
+MatchTimes = []  # List to store match times
+GameModes = []  # List to store game modes
+MapsPlayed = []  # List to store maps played
+TotalKills = []  # List to store total kills
+TotalDamage = []  # List to store total damage dealt
+TotalDeaths = []  # List to store total deaths
+TotalAssists = []  # List to store total assists
+TotalFalseKills = []  # List to store total false kills
+TotalBlocked = []  # List to store total damage blocked
+TotalHealing = []  # List to store total healing done
+TotalAccuracy = []  # List to store accuracy
+RankedPointList = []  # List to store ranked points
+PointsGainedorLost = []  # List to store points gained/lost
+DateList = []  # List to store dates
+DayTimeList = []  # List to store day times
+TotalWinLoss = []  # List to store win/loss
+TotalMVP = []  # List to store MVP status
 
+# Loop through each entry in the Ranked list and extract the data
+# I chose to do it this way becuase I plann to come back later and use this as a frame for creatig a scanner that can extrat the data into a similar list in a txt file.
+# For this reason I want this for loop to be able to read through the data and extract the data into a list that can be used to create a dataframe.
 for x in Ranked:
    x = str(x).split(",")
    Character = x[0] # Character played/character we are tracking for
+   Characters.append(Character) # Append the character to the list of characters
    NumberOfDifCharactersPlayed = x[1] # Number of different characters played
+   CharactersPlayed.append(NumberOfDifCharactersPlayed) # Append the number of different characters played to the list of characters played
    MatcTime = x[2]  # Match time in m:s
+   MatchTimes.append(MatcTime)  # Append the match time to the list of match times
    mode = x[3]  # Game mode
-   map_played = x[4]  # Map played
+   GameModes.append(mode)  # Append the game mode to the list of game modes
+   map_played = x[4]  # Map played    
+   MapsPlayed.append(map_played)  # Append the map played to the list of maps played
    Actual_kills = x[5]  # keeps track of Kills/finalhits
+   TotalKills.append(Actual_kills)  # Append the total kills to the list of total kills
    damage = x[6]  # total Damage dealt during the match
+   TotalDamage.append(damage)  # Append the total damage to the list of total damage
    deaths = x[7]  # total Deaths that happend during the match
-   assist = x[8]  # total Assists that happened during the match
+   TotalDeaths.append(deaths)  # Append the total deaths to the list of total deaths
+   assist = x[8]  # total Assists that happened during the 
+   TotalAssists.append(assist)  # Append the total assists to the list of total assists
    False_kills = x[9]  # this stat in the game is counted as kills: However its super inflated and lies to the players becuase it counts assists as kills.
+   TotalFalseKills.append(False_kills)  # Append the total false kills to the list of total false kills
    blocked = x[10]  # total Damage blocked during the match
+   TotalBlocked.append(blocked)  # Append the total blocked damage to the list of total blocked damage
    healing = x[11]  # total Healing done during the match
+   TotalHealing.append(healing)  # Append the total healing to the list of total healing
    Accuracy = x[12]  # Accuracy of the character played
+   TotalAccuracy.append(Accuracy)  # Append the accuracy to the list of total accuracy
    RankedPoints = x[13]  # total Ranked points you had as a player at the time
+   RankedPointList.append(RankedPoints)  # Append the ranked points to the list of ranked points
    Points_gained = x[14]  # points gained/lost during the match
+   PointsGainedorLost.append(Points_gained)  # Append the points gained/lost to the list of points gained/lost
    date = x[15]  # date of the match
+   DateList.append(date)  # Append the date to the list of dates
    Day_time = x[16]  # time that the match took place
+   DayTimeList.append(Day_time)  # Append the day time to the list of day times
    win_loss = x[17]  # win/loss of the match
+   TotalWinLoss.append(win_loss)  # Append the win/loss to the list of win/loss
    mvp = x[18]  # if the player was mvp/svp or not
-   
+   TotalMVP.append(mvp)  # Append the mvp/svp to the list of mvp/svp
+
+print(Characters, "\n", CharactersPlayed, "\n", MatchTimes, "\n", GameModes, "\n", MapsPlayed, "\n", TotalKills, "\n", TotalDamage, "\n", TotalDeaths, "\n", TotalAssists, "\n", TotalFalseKills, "\n", TotalBlocked, "\n", TotalHealing, "\n", TotalAccuracy, "\n", RankedPointList, "\n", PointsGainedorLost, "\n", DateList, "\n", DayTimeList, "\n", TotalWinLoss, "\n", TotalMVP)
