@@ -34,7 +34,7 @@ Ranked = [
 ]
 
 Characters = []  # List to store unique characters
-CharactersPlayed = []  # List to store number of different characters played
+CharactersPlayed = []  # List to store number of different characters played during a match
 MatchTimes = []  # List to store match times
 GameModes = []  # List to store game modes
 MapsPlayed = []  # List to store maps played
@@ -97,4 +97,24 @@ for x in Ranked:
    mvp = x[18]  # if the player was mvp/svp or not
    TotalMVP.append(mvp)  # Append the mvp/svp to the list of mvp/svp
 
-print(Characters, "\n", CharactersPlayed, "\n", MatchTimes, "\n", GameModes, "\n", MapsPlayed, "\n", TotalKills, "\n", TotalDamage, "\n", TotalDeaths, "\n", TotalAssists, "\n", TotalFalseKills, "\n", TotalBlocked, "\n", TotalHealing, "\n", TotalAccuracy, "\n", RankedPointList, "\n", PointsGainedorLost, "\n", DateList, "\n", DayTimeList, "\n", TotalWinLoss, "\n", TotalMVP)
+something_data = {
+   "Total Damage": TotalDamage,
+   "Total Kills": TotalKills,
+}
+
+df = pd.DataFrame(something_data)  # Create a DataFrame from the data
+df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
+df["Total Damage"] = df["Total Damage"].astype(int)  # Convert the "Total Damage" column to integers
+
+df = df.sort_values(by="Total Damage", ascending=False)  # Sort the DataFrame by "Total Damage" in descending orders
+
+for xi, yi in zip(df["Total Damage"], df["Total Kills"]):
+    plt.annotate(f'({xi}, {yi})', (xi, yi), textcoords="offset points", xytext=(0, 10), ha='center', color='black')
+
+plt.plot(df["Total Damage"], df["Total Kills"], marker='o', linestyle='-')  # Plot the data with markers and lines
+
+plt.xlabel("Total Kills")  # Set the x-axis label
+plt.ylabel("Damage Dealt")  # Set the y-axis label
+plt.title("Total Kills per character")  # Set the title of the plot
+plt.grid(True)  # Add a grid to the plot
+plt.show()
