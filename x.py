@@ -97,24 +97,67 @@ for x in Ranked:
    mvp = x[18]  # if the player was mvp/svp or not
    TotalMVP.append(mvp)  # Append the mvp/svp to the list of mvp/svp
 
-something_data = {
-   "Total Damage": TotalDamage,
-   "Total Kills": TotalKills,
+# something_data = {
+#    "Total Damage": TotalDamage,
+#    "Total Kills": TotalKills,
+# }
+
+# df = pd.DataFrame(something_data)  # Create a DataFrame from the data
+# df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
+# df["Total Damage"] = df["Total Damage"].astype(int)  # Convert the "Total Damage" column to integers
+
+# df = df.sort_values(by="Total Damage", ascending=False)  # Sort the DataFrame by "Total Damage" in descending orders
+
+# for xi, yi in zip(df["Total Damage"], df["Total Kills"]):
+#     plt.annotate(f'({xi}, {yi})', (xi, yi), textcoords="offset points", xytext=(0, 10), ha='center', color='black')
+
+# plt.plot(df["Total Damage"], df["Total Kills"], marker='o', linestyle='-')  # Plot the data with markers and lines
+
+# plt.xlabel("Total Kills")  # Set the x-axis label
+# plt.ylabel("Damage Dealt")  # Set the y-axis label
+# plt.title("Total Kills per character")  # Set the title of the plot
+# plt.grid(True)  # Add a grid to the plot
+# plt.show()
+
+#--------
+# something_data = {
+#    "Total Damage": TotalDamage,
+#    "Total Kills": TotalKills,
+# }
+
+# df = pd.DataFrame(something_data)  # Create a DataFrame from the data
+# df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
+
+# df = df.sort_values(by="Total Kills")  # Sort the DataFrame by "Total Kills"
+
+# plt.plot(df["Total Kills"], df["Total Damage"], marker='o', linestyle='-')  # Plot the data with markers and lines
+
+# plt.xlabel("Total Kills")  # Set the x-axis label
+# plt.ylabel("Damage Dealt")  # Set the y-axis label
+# plt.title("Total Kills per character")  # Set the title of the plot
+# plt.grid(True)  # Add a grid to the plot
+# plt.show()
+
+
+#---------
+# Count occurrences of each combination of TotalWinLoss and mvp
+win_loss_mvp_counts = {
+    "Win & MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "mvp"),
+    "Win & SVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "svp"),
+    "Win & No MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "no"),
+    "Loss & MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "mvp"),
+    "Loss & SVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "svp"),
+    "Loss & No MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "no"),
 }
 
-df = pd.DataFrame(something_data)  # Create a DataFrame from the data
-df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
-df["Total Damage"] = df["Total Damage"].astype(int)  # Convert the "Total Damage" column to integers
+# Prepare data for the pie chart
+labels = list(win_loss_mvp_counts.keys())
+sizes = list(win_loss_mvp_counts.values())
+colors = ["#4CAF50", "#FFC107", "#2196F3", "#F44336", "#FF9800", "#9C27B0"]  # Custom colors
+explode = [0.1 if "MVP" in label else 0 for label in labels]  # Highlight MVP-related slices
 
-df = df.sort_values(by="Total Damage", ascending=False)  # Sort the DataFrame by "Total Damage" in descending orders
-
-for xi, yi in zip(df["Total Damage"], df["Total Kills"]):
-    plt.annotate(f'({xi}, {yi})', (xi, yi), textcoords="offset points", xytext=(0, 10), ha='center', color='black')
-
-plt.plot(df["Total Damage"], df["Total Kills"], marker='o', linestyle='-')  # Plot the data with markers and lines
-
-plt.xlabel("Total Kills")  # Set the x-axis label
-plt.ylabel("Damage Dealt")  # Set the y-axis label
-plt.title("Total Kills per character")  # Set the title of the plot
-plt.grid(True)  # Add a grid to the plot
+# Create the pie chart
+plt.figure(figsize=(8, 8))
+plt.pie(sizes, labels=labels, autopct="%1.1f%%", startangle=140, colors=colors, explode=explode)
+plt.title("Comparison of TotalWinLoss to MVP Status")
 plt.show()
