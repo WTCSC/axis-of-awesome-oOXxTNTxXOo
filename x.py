@@ -6,7 +6,7 @@ import numpy as np
 #Character, NumberOfDifCharactersPlayed, MatcTime/m:s, mode, map, Kills/finalhits, damage, deaths, assist, "kills", blocked, healing, Accuracy, RankedPoints, loss/gain, date(date and time), win/loss, mvp
 Ranked = [
 "Magik, 2, 15:59, Convergence, Symboitic Surface, 9, 19273, 13, 0, 18, 26409, 0, 40.3, 4393, -21, 3/22/25, 1:03 pm, lost, no",
-"Magik, 3, 15:25, Convergence, Symbiotic Surface, 3, 13422, 15, 7, 12, 10142, 9,610, 28.7, 4414, -21, 3/21/25, 9:51 pm, lost, no",
+"Magik, 3, 15:25, Convergence, Symbiotic Surface, 3, 13422, 15, 7, 12, 10142, 9610, 28.7, 4414, -21, 3/21/25, 9:51 pm, lost, no",
 "Magik, 1, 17:21, Convoy, Spider-Islands, 19, 23494, 12, 0, 33, 15097, 0, 51.8, 4435, -22, 3/21/25, 9:30 pm, lost, no",
 "Magik, 1, 8:23, Domination, Royal Palace, 7, 9554, 6, 0, 15, 5425, 0, 51.9, 4456, +20, 3/21/25, 7:47 pm, win, no",
 "Magik, 3, 16:26, Convoy, Midtown, 14, 22470, 13, 6, 28, 38654, 0, 31.0, 4426, +23, 3/20/25, 10:52 pm, win, no",
@@ -143,12 +143,15 @@ for x in Ranked:
 # Count occurrences of each combination of TotalWinLoss and mvp
 win_loss_mvp_counts = {
     "Win & MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "mvp"),
-    "Win & SVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "svp"),
     "Win & No MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "win" and mvp == "no"),
-    "Loss & MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "mvp"),
     "Loss & SVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "svp"),
     "Loss & No MVP": sum(1 for win, mvp in zip(TotalWinLoss, TotalMVP) if win == "lost" and mvp == "no"),
 }
+
+print(TotalWinLoss, TotalMVP)
+
+# Remove entries with zero counts
+win_loss_mvp_counts = {k: v for k, v in win_loss_mvp_counts.items() if v < 0}
 
 # Prepare data for the pie chart
 labels = list(win_loss_mvp_counts.keys())
@@ -161,3 +164,5 @@ plt.figure(figsize=(8, 8))
 plt.pie(sizes, labels=labels, autopct="%1.1f%%", startangle=140, colors=colors, explode=explode)
 plt.title("Comparison of TotalWinLoss to MVP Status")
 plt.show()
+
+#https://www.geeksforgeeks.org/plot-a-pie-chart-in-python-using-matplotlib/
