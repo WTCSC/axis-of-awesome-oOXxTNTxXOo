@@ -53,90 +53,78 @@ DayTimeList = []  # List to store day times
 TotalWinLoss = []  # List to store win/loss
 TotalMVP = []  # List to store MVP status
 
-# Loop through each entry in the Ranked list and extract the data
-# I chose to do it this way becuase I plann to come back later and use this as a frame for creatig a scanner that can extrat the data into a similar list in a txt file.
-# For this reason I want this for loop to be able to read through the data and extract the data into a list that can be used to create a dataframe.
-for x in Ranked:
-   x = str(x).split(",")
-   Character = x[0] # Character played/character we are tracking for
-   Characters.append(Character) # Append the character to the list of characters
-   NumberOfDifCharactersPlayed = x[1] # Number of different characters played
-   CharactersPlayed.append(NumberOfDifCharactersPlayed) # Append the number of different characters played to the list of characters played
-   MatcTime = x[2]  # Match time in m:s
-   MatchTimes.append(MatcTime)  # Append the match time to the list of match times
-   mode = x[3]  # Game mode
-   GameModes.append(mode)  # Append the game mode to the list of game modes
-   map_played = x[4]  # Map played    
-   MapsPlayed.append(map_played)  # Append the map played to the list of maps played
-   Actual_kills = x[5]  # keeps track of Kills/finalhits
-   TotalKills.append(Actual_kills)  # Append the total kills to the list of total kills
-   damage = x[6]  # total Damage dealt during the match
-   TotalDamage.append(damage)  # Append the total damage to the list of total damage
-   deaths = x[7]  # total Deaths that happend during the match
-   TotalDeaths.append(deaths)  # Append the total deaths to the list of total deaths
-   assist = x[8]  # total Assists that happened during the 
-   TotalAssists.append(assist)  # Append the total assists to the list of total assists
-   False_kills = x[9]  # this stat in the game is counted as kills: However its super inflated and lies to the players becuase it counts assists as kills.
-   TotalFalseKills.append(False_kills)  # Append the total false kills to the list of total false kills
-   blocked = x[10]  # total Damage blocked during the match
-   TotalBlocked.append(blocked)  # Append the total blocked damage to the list of total blocked damage
-   healing = x[11]  # total Healing done during the match
-   TotalHealing.append(healing)  # Append the total healing to the list of total healing
-   Accuracy = x[12]  # Accuracy of the character played
-   TotalAccuracy.append(Accuracy)  # Append the accuracy to the list of total accuracy
-   RankedPoints = x[13]  # total Ranked points you had as a player at the time
-   RankedPointList.append(RankedPoints)  # Append the ranked points to the list of ranked points
-   Points_gained = x[14]  # points gained/lost during the match
-   PointsGainedorLost.append(Points_gained)  # Append the points gained/lost to the list of points gained/lost
-   date = x[15]  # date of the match
-   DateList.append(date)  # Append the date to the list of dates
-   Day_time = x[16]  # time that the match took place
-   DayTimeList.append(Day_time)  # Append the day time to the list of day times
-   win_loss = x[17]  # win/loss of the match
-   TotalWinLoss.append(win_loss)  # Append the win/loss to the list of win/loss
-   mvp = x[18]  # if the player was mvp/svp or not
-   TotalMVP.append(mvp)  # Append the mvp/svp to the list of mvp/svp
+# Mapping indices to their respective lists
+data_mapping = {
+    0: Characters,
+    1: CharactersPlayed,
+    2: MatchTimes,
+    3: GameModes,
+    4: MapsPlayed,
+    5: TotalKills,
+    6: TotalDamage,
+    7: TotalDeaths,
+    8: TotalAssists,
+    9: TotalFalseKills,
+    10: TotalBlocked,
+    11: TotalHealing,
+    12: TotalAccuracy,
+    13: RankedPointList,
+    14: PointsGainedorLost,
+    15: DateList,
+    16: DayTimeList,
+    17: TotalWinLoss,
+    18: TotalMVP,
+}
 
-# something_data = {
-#    "Total Damage": TotalDamage,
-#    "Total Kills": TotalKills,
-# }
-
-# df = pd.DataFrame(something_data)  # Create a DataFrame from the data
-# df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
-# df["Total Damage"] = df["Total Damage"].astype(int)  # Convert the "Total Damage" column to integers
-
-# df = df.sort_values(by="Total Damage", ascending=False)  # Sort the DataFrame by "Total Damage" in descending orders
-
-# for xi, yi in zip(df["Total Damage"], df["Total Kills"]):
-#     plt.annotate(f'({xi}, {yi})', (xi, yi), textcoords="offset points", xytext=(0, 10), ha='center', color='black')
-
-# plt.plot(df["Total Damage"], df["Total Kills"], marker='o', linestyle='-')  # Plot the data with markers and lines
-
-# plt.xlabel("Total Kills")  # Set the x-axis label
-# plt.ylabel("Damage Dealt")  # Set the y-axis label
-# plt.title("Total Kills per character")  # Set the title of the plot
-# plt.grid(True)  # Add a grid to the plot
-# plt.show()
+# Optimized loop
+for entry in Ranked:
+    values = str(entry).split(",")
+    for index, value in enumerate(values):
+        if index in data_mapping:
+            data_mapping[index].append(value.strip())  # Append the value to the corresponding list
 
 #--------
-# something_data = {
-#    "Total Damage": TotalDamage,
-#    "Total Kills": TotalKills,
-# }
+# Convert lists to appropriate data types
+something_data = {
+   "Total Damage": TotalDamage,
+   "Total Kills": TotalKills,
+}
 
-# df = pd.DataFrame(something_data)  # Create a DataFrame from the data
-# df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
+df = pd.DataFrame(something_data)  # Create a DataFrame from the data
+df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
+df["Total Damage"] = df["Total Damage"].astype(int)  # Convert the "Total Damage" column to integers
 
-# df = df.sort_values(by="Total Kills")  # Sort the DataFrame by "Total Kills"
+df = df.sort_values(by="Total Damage", ascending=False)  # Sort the DataFrame by "Total Damage" in descending orders
 
-# plt.plot(df["Total Kills"], df["Total Damage"], marker='o', linestyle='-')  # Plot the data with markers and lines
+for xi, yi in zip(df["Total Damage"], df["Total Kills"]):
+    plt.annotate(f'({xi}, {yi})', (xi, yi), textcoords="offset points", xytext=(0, 10), ha='center', color='black')
 
-# plt.xlabel("Total Kills")  # Set the x-axis label
-# plt.ylabel("Damage Dealt")  # Set the y-axis label
-# plt.title("Total Kills per character")  # Set the title of the plot
-# plt.grid(True)  # Add a grid to the plot
-# plt.show()
+plt.plot(df["Total Damage"], df["Total Kills"], marker='o', linestyle='-')  # Plot the data with markers and lines
+
+plt.xlabel("Total Kills")  # Set the x-axis label
+plt.ylabel("Damage Dealt")  # Set the y-axis label
+plt.title("Total Kills per character")  # Set the title of the plot
+plt.grid(True)  # Add a grid to the plot
+plt.show()
+
+#--------
+something_data = {
+   "Total Damage": TotalDamage,
+   "Total Kills": TotalKills,
+}
+
+df = pd.DataFrame(something_data)  # Create a DataFrame from the data
+df["Total Kills"] = df["Total Kills"].astype(int)  # Convert the "Total Kills" column to integers
+
+df = df.sort_values(by="Total Kills")  # Sort the DataFrame by "Total Kills"
+
+plt.plot(df["Total Kills"], df["Total Damage"], marker='o', linestyle='-')  # Plot the data with markers and lines
+
+plt.xlabel("Total Kills")  # Set the x-axis label
+plt.ylabel("Damage Dealt")  # Set the y-axis label
+plt.title("Total Kills per character")  # Set the title of the plot
+plt.grid(True)  # Add a grid to the plot
+plt.show()
 
 
 #---------
@@ -151,8 +139,9 @@ win_loss_mvp_counts = {
     "Loss & SVP": sum(1 for win, mvp in zip(normalized_win_loss, normalized_mvp) if win == "lost" and mvp == "svp"),
     "Loss & No MVP": sum(1 for win, mvp in zip(normalized_win_loss, normalized_mvp) if win == "lost" and mvp == "no"),
 }
+
 # Remove entries with zero counts
-win_loss_mvp_counts = {k: v for k, v in win_loss_mvp_counts.items() if v < 0}
+win_loss_mvp_counts = {k: v for k, v in win_loss_mvp_counts.items() if v > 0}
 
 # Prepare data for the pie chart
 labels = list(win_loss_mvp_counts.keys())
@@ -167,3 +156,84 @@ plt.title("Comparison of TotalWinLoss to MVP Status")
 plt.show()
 
 #https://www.geeksforgeeks.org/plot-a-pie-chart-in-python-using-matplotlib/
+
+
+
+#------- 
+# Define valid combinations of GameModes and MapsPlayed
+valid_combinations = {
+    "Convergence": ["Symbiotic Surface", "Shin-Shibuya", "Hall of Djalia"],
+    "Convoy": ["Midtown", "Yggdrasill Path", "Spider-Islands"],
+    "Domination": ["Royal Palace", "Hell's Heaven", "Birnin T'Challa"]
+}
+
+# Manually combine GameModes and MapsPlayed based on valid combinations
+game_mode_map = []
+for mode, map_ in zip(GameModes, MapsPlayed):
+    mode = mode.strip()
+    map_ = map_.strip()
+    if mode in valid_combinations and map_ in valid_combinations[mode]:
+        game_mode_map.append(f"{mode} - {map_}")
+    else:
+        game_mode_map.append("Invalid Combination")  # Mark invalid combinations
+
+# Filter out invalid combinations
+filtered_game_mode_map = []
+filtered_win_loss = []
+for gmm, win in zip(game_mode_map, TotalWinLoss):
+    if gmm != "Invalid Combination":
+        filtered_game_mode_map.append(gmm)
+        filtered_win_loss.append(1 if win.strip().lower() == "win" else 0)
+
+# Create a DataFrame with valid combinations
+data = pd.DataFrame({
+    "GameMode_Map": filtered_game_mode_map,
+    "Win": filtered_win_loss
+})
+
+# Group by GameMode_Map and calculate total wins and losses
+total_wins = data.groupby("GameMode_Map")["Win"].sum()
+total_losses = data.groupby("GameMode_Map")["Win"].count() - total_wins  # Total matches minus wins equals losses
+
+# Combine wins and losses into a single DataFrame
+win_loss_data = pd.DataFrame({
+    "Wins": total_wins,
+    "Losses": total_losses
+})
+
+# Group by GameMode_Map and calculate total wins and losses
+total_wins = data.groupby("GameMode_Map")["Win"].sum()
+total_matches = data.groupby("GameMode_Map")["Win"].count()
+total_losses = total_matches - total_wins  # Total matches minus wins equals losses
+
+# Calculate win percentage
+win_percentage = (total_wins / total_matches * 100).clip(lower=0, upper=100)  # Cap at 100% and set lower bound to 0%
+
+# Combine wins, losses, and win percentage into a single DataFrame
+win_loss_data = pd.DataFrame({
+    "Wins": total_wins,
+    "Losses": total_losses,
+    "Win Percentage": win_percentage
+})
+
+# Sort by total wins for better visualization
+win_loss_data = win_loss_data.sort_values(by="Wins", ascending=False)
+
+# Update x-tick labels to include win percentage
+xtick_labels = [
+    f"{index} ({int(row['Win Percentage'])}%)"
+    for index, row in win_loss_data.iterrows()
+]
+
+# Plot the grouped bar graph
+ax = win_loss_data[["Wins", "Losses"]].plot(
+    kind="bar", figsize=(12, 6), color=["#4CAF50", "#F44336"], edgecolor="black"
+)
+plt.xlabel("Game Mode and Map", fontsize=12)
+plt.ylabel("Total Matches", fontsize=12)
+plt.title("Total Wins and Losses by Game Mode and Map", fontsize=14)
+plt.xticks(ticks=range(len(xtick_labels)), labels=xtick_labels, rotation=45, ha="right", fontsize=10)
+plt.legend(title="Result", labels=["Wins", "Losses"])
+plt.tight_layout()
+plt.grid(axis="y", linestyle="--", alpha=0.7)
+plt.show()
