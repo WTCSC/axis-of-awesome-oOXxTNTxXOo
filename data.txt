@@ -1,3 +1,4 @@
+I leave the data.txt as I want to eventualy use this file as a place to save the data from the graphs. 
 Format example:
 Character, NumberOfDifCharactersPlayed, MatcTime/m:s, mode, map, Kills/finalhits, damage, deaths, assist, "kills", blocked, healing, Accuracy, RankedPoints, loss/gain, date(date and time), win/loss, mvp
 
